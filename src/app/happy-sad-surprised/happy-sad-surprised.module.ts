@@ -10,6 +10,7 @@ import { WebcamModule } from 'ngx-webcam';
 import { PickPlayers } from './containers/pick-players/pick-players.service';
 import { HappySadSurprisedRoutingModule } from './happy-sad-surprised-routing.module';
 import { LibModule } from '../lib/lib.module';
+import { GameLogicService } from '../lib/game-logic.service';
 
 @NgModule({
   imports: [
