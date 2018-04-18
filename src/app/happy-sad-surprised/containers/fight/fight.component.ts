@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebcamImage } from 'ngx-webcam';
 import { Subject } from 'rxjs/Subject';
 import { GameLogicService } from '../../../lib/game-logic.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fight',
@@ -12,7 +13,7 @@ export class FightComponent implements OnInit {
 
   public trigger$ = new Subject();
 
-  constructor(private logic: GameLogicService) { }
+  constructor(private logic: GameLogicService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,5 +31,13 @@ export class FightComponent implements OnInit {
 
   public triggerImage() {
     this.trigger$.next();
+  }
+
+  public goHome() {
+    this.router.navigateByUrl('/game');
+  }
+
+  public goScoreboard() {
+    this.router.navigateByUrl('/game/scoreboard');
   }
 }

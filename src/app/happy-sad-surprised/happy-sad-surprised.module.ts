@@ -11,6 +11,7 @@ import { PickPlayers } from './containers/pick-players/pick-players.service';
 import { HappySadSurprisedRoutingModule } from './happy-sad-surprised-routing.module';
 import { LibModule } from '../lib/lib.module';
 import { GameLogicService } from '../lib/game-logic.service';
+import { ScoreboardComponent } from './containers/scoreboard/scoreboard.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { GameLogicService } from '../lib/game-logic.service';
 
     HappySadSurprisedRoutingModule
   ],
-  declarations: [PhotoBoxComponent, PickPlayersComponent, FightComponent],
+  declarations: [PhotoBoxComponent, PickPlayersComponent, FightComponent, ScoreboardComponent],
   providers: [PickPlayers, GameLogicService]
 })
 export class HappySadSurprisedModule { }
