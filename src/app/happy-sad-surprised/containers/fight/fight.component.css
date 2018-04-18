@@ -1,0 +1,14 @@
+.fightContainer {
+    display: flex;
+    flex-flow: column;
+}
+
+.names {
+    display: inline-flex;
+    justify-content: space-evenly;
+    font-size: xx-large;
+}
+
+webcam {
+    margin: auto;
+}

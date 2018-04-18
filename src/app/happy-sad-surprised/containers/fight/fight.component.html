@@ -1,11 +1,16 @@
-<div>
-    {{player1$ | async}}
-</div>
-<div>
-    {{player2$ | async}}
-</div>
-<webcam (imageCapture)="imageCaptured($event)" [trigger]="trigger$"></webcam>
+<div class="fightContainer">
+    <div class="names">
+        <div id="player1">
+            {{player1$ | async}}
+        </div>
+        <div id="player2">
+            {{player2$ | async}}
+        </div>
+    </div>
 
-<button (click)="triggerImage()">Fight!</button>
-<button (click)="goHome()">Home!</button>
-<button (click)="goScoreboard()">Scoreboard!</button>
+    <webcam (imageCapture)="imageCaptured($event)" [trigger]="trigger$"></webcam>
+
+    <button (click)="triggerImage()">Fight!</button>
+    <button (click)="goHome()">Home!</button>
+    <button (click)="goScoreboard()">Scoreboard!</button>
+</div>

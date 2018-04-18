@@ -39,7 +39,7 @@ export class FightComponent implements OnInit {
         if (result.errorMessage) {
           alert(`Error ${result.errorMessage}`);
         } else {
-          this.playersService.getPlayers().toPromise().then(players => {
+          this.players$.toPromise().then(players => {
             const winner = players[result.winnerIndex];
 
             alert(`The Winner is ${winner}`);
