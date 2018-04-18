@@ -1,3 +1,9 @@
+<div>
+    {{player1$ | async}}
+</div>
+<div>
+    {{player2$ | async}}
+</div>
 <webcam (imageCapture)="imageCaptured($event)" [trigger]="trigger$"></webcam>
 
 <button (click)="triggerImage()">Fight!</button>

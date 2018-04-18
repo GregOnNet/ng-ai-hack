@@ -3,6 +3,8 @@ import { WebcamImage } from 'ngx-webcam';
 import { Subject } from 'rxjs/Subject';
 import { GameLogicService } from '../../../lib/game-logic.service';
 import { Router } from '@angular/router';
+import { PickPlayers } from '../pick-players/pick-players.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-fight',
@@ -13,9 +15,22 @@ export class FightComponent implements OnInit {
 
   public trigger$ = new Subject();
 
-  constructor(private logic: GameLogicService, private router: Router) { }
+  public player1$;
+  public player2$;
+
+  private players$;
+
+  constructor(
+    private logic: GameLogicService,
+    private router: Router,
+    private playersService: PickPlayers
+  ) { }
 
   ngOnInit() {
+    this.players$ = this.playersService.getPlayers();
+
+    this.player1$ = this.players$.pipe(map(x => x[0].name));
+    this.player2$ = this.players$.pipe(map(x => x[1].name));
   }
 
   public imageCaptured(image: WebcamImage) {
@@ -24,7 +39,11 @@ export class FightComponent implements OnInit {
         if (result.errorMessage) {
           alert(`Error ${result.errorMessage}`);
         } else {
-          alert(`The Winner is Player ${result.winnerIndex + 1}`);
+          this.playersService.getPlayers().toPromise().then(players => {
+            const winner = players[result.winnerIndex];
+
+            alert(`The Winner is ${winner}`);
+          });
         }
       });
   }
