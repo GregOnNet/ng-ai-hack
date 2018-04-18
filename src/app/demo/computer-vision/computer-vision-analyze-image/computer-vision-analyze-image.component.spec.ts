@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ComputerVisionAnalyzeImageComponent } from './computer-vision-analyze-image.component';
 
-describe('ComputerVisionAnalyzeImageComponent', () => {
+xdescribe('ComputerVisionAnalyzeImageComponent', () => {
   let component: ComputerVisionAnalyzeImageComponent;
   let fixture: ComponentFixture<ComputerVisionAnalyzeImageComponent>;
 
