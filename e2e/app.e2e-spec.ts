@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('ng-ai-hack App', () => {
+xdescribe('ng-ai-hack App', () => {
   let page: AppPage;
 
   beforeEach(() => {

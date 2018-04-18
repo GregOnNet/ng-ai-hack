@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextAnalysisComponent } from './text-analysis.component';
 
-describe('TextAnalysisComponent', () => {
+xdescribe('TextAnalysisComponent', () => {
   let component: TextAnalysisComponent;
   let fixture: ComponentFixture<TextAnalysisComponent>;
 
