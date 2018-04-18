@@ -1,6 +1,6 @@
-## Super Great Slide
+# Super Great Slide
 
-# ??? (our actual name)
+## ??? (our actual name)
 
 - Gregor
 - Philip
