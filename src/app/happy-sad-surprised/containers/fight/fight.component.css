@@ -12,3 +12,7 @@
 webcam {
     margin: auto;
 }
+
+[mat-raised-button] {
+    margin-top: 64px;
+}
