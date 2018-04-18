@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { PickPlayersComponent  } from './containers/pick-players/pick-players.component';
 import { FightComponent } from './containers/fight/fight.component';
