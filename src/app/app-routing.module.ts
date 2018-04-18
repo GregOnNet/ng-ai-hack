@@ -4,7 +4,8 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: 'root', component: AppComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/game', pathMatch: 'full' },
+  { path: 'game', loadChildren: './happy-sad-surprised/happy-sad-surprised.module#HappySadSurprisedModule' },
   { path: '**', redirectTo: '/home' }
 ];
 
