@@ -1,3 +1,24 @@
-<p>
-  pick-players works!
-</p>
+<h1>Pick players</h1>
+<form 
+  [formGroup]="playersForm"
+  (ngSubmit)="savePlayersAndStartGame()">
+  <mat-form-field>
+    <input 
+      matInput
+      formControlName="firstPlayer"
+      placeholder="Player 1">
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="secondPlayer"
+      placeholder="Player 2">
+  </mat-form-field>
+  <button 
+    [disabled]="playersForm.invalid"
+    mat-raised-button
+    color="accent"
+    type="submit">
+    START
+  </button>
+</form>
