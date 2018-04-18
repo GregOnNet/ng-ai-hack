@@ -5,6 +5,7 @@ import { GameLogicService } from '../../../lib/game-logic.service';
 import { Router } from '@angular/router';
 import { PickPlayers } from '../pick-players/pick-players.service';
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-fight',
@@ -23,7 +24,8 @@ export class FightComponent implements OnInit {
   constructor(
     private logic: GameLogicService,
     private router: Router,
-    private playersService: PickPlayers
+    private playersService: PickPlayers,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -37,12 +39,12 @@ export class FightComponent implements OnInit {
     this.logic.evaluate(image)
       .then(result => {
         if (result.errorMessage) {
-          alert(`Error ${result.errorMessage}`);
+          this.snackBar.open(`Error ${result.errorMessage}`);
         } else {
           this.players$.toPromise().then(players => {
             const winner = players[result.winnerIndex].name;
 
-            alert(`The Winner is ${winner}`);
+            this.snackBar.open(`The Winner is ${winner}`);
           });
         }
       });

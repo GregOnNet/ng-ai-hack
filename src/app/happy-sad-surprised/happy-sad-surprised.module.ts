@@ -12,6 +12,7 @@ import { HappySadSurprisedRoutingModule } from './happy-sad-surprised-routing.mo
 import { LibModule } from '../lib/lib.module';
 import { GameLogicService } from '../lib/game-logic.service';
 import { ScoreboardComponent } from './containers/scoreboard/scoreboard.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { ScoreboardComponent } from './containers/scoreboard/scoreboard.componen
     WebcamModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
 
     LibModule,
 
