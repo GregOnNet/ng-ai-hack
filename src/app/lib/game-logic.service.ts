@@ -10,35 +10,37 @@ export interface IFightResult {
 
 @Injectable()
 export class GameLogicService {
-
-  constructor(private faceService: FaceDataService) { }
+  constructor(private faceService: FaceDataService) {}
 
   public evaluate(image: WebcamImage): Promise<IFightResult> {
     const rawImage = this.base64ToArrayBuffer(image.imageAsBase64);
 
-    return this.faceService.detectEmotion(rawImage)
-      .then(res => {
+    return this.faceService.detectEmotion(rawImage).then(res => {
+      // check if the number of faces is correct
+      if (res.length !== 2) {
+        return {
+          errorMessage: 'Please make sure both faces are visible.'
+        };
+      }
 
-        // check if the number of faces is correct
-        if (res.length !== 2) {
-          return {
-            errorMessage: 'Please make sure both faces are visible.'
-          };
-        }
+      const players = res.sort(x => x.faceRectangle.left);
 
-        const players = res.sort((x) => x.faceRectangle.left);
+      const player1 = players[0].faceAttributes.emotion;
+      const player2 = players[1].faceAttributes.emotion;
 
-        const player1 = players[0].faceAttributes.emotion;
-        const player2 = players[1].faceAttributes.emotion;
-
-        return this.evaluateEmotion(player1, player2);
-      });
+      return this.evaluateEmotion(player1, player2);
+    });
   }
 
-  private evaluateEmotion(player1: IEmotionScore, player2: IEmotionScore): IFightResult {
-    // ToDo Add logic
-    debugger;
-    return {};
+  private evaluateEmotion(
+    player1: IEmotionScore,
+    player2: IEmotionScore
+  ): IFightResult {
+
+    const right = findEmotion(player1);
+    const left = findEmotion(player2);
+
+    return chooseWinner(left, right);
   }
 
   private base64ToArrayBuffer(base64: string): ArrayBuffer {
@@ -50,4 +52,34 @@ export class GameLogicService {
     }
     return bytes.buffer as ArrayBuffer;
   }
+}
+
+export enum RankedEmotion {
+  happiness,
+  anger,
+  contempt,
+  disgust,
+  fear,
+  neutral,
+  sadness,
+  surprise
+}
+
+export function chooseWinner(
+  emotionOne: RankedEmotion,
+  emotionTwo: RankedEmotion
+): IFightResult {
+  if (emotionOne === emotionTwo) {
+    return { errorMessage: 'Draw! Play again! :-)' };
+  }
+
+  return emotionOne < emotionTwo ? { winnerIndex: 0 } : { winnerIndex: 1 };
+}
+
+export function findEmotion(emotion: IEmotionScore): RankedEmotion {
+  const found = Object.keys(emotion)
+    .map(key => ({ emotion: key, score: emotion[key] }))
+    .reduce((prev, current) => (prev.score > current.score ? prev : current));
+
+  return RankedEmotion[found.emotion];
 }
