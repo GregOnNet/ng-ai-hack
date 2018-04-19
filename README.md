@@ -1,6 +1,7 @@
 # ng-ai-hack
 
 https://gregonnet.github.io/ng-ai-hack/
+https://stackblitz.com/github/GregOnNet/ng-ai-hack
 
 A starter project for building apps with Angular and Azure Cognitive Services (Artificial Intelligence and Machine Learning products).
 Built by [Laurie Atkinson](https://twitter.com/JoyfulCoder) and [Brian Clark](https://twitter.com/_clarkio)
